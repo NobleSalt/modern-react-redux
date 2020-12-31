@@ -9,15 +9,11 @@ class Searchbar extends React.Component {
             term: event.target.value
         });
     };
-    handleSubmit = event => {
-        event.preventDefault();
-        this.props.handleFormSubmit(this.state.term);
-    }
 
     render() {
         return (
             <div className='search-bar ui segment'>
-                <form onSubmit={this.handleSubmit} className='ui form'>
+                <form onSubmit={(event)=>{event.preventDefault(); return this.props.handleFormSubmit(this.state.term)}} className='ui form'>
                     <div className='field'>
                         <label htmlFor="video-search">Video Search</label>
                         <input onChange={this.handleChange} name='video-search' type="text" value={this.state.term}/>
